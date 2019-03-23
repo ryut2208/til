@@ -4,5 +4,8 @@
 :toc:
 
 == 2019-03-24
-=== link:2019-03-24/MapLimitation.java[MapLimitation.java]
-`Map#entrySet()`を使ったforEachループを途中で止める方法。
+link:2019-03-24/MapLimitation.java[MapLimitation.java]::
+``Map#entrySet()``を使ったforEachループを途中で止める方法。
+
+link:2019-03-24/inline_expression.adoc::
+Asciidocの書き方。インラインでのコード表示とリンクの張り方。
