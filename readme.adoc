@@ -4,5 +4,5 @@
 :toc:
 
 == 2019-03-24
-=== link:MapLimitation.java[MapLimitation.java]
+=== link:2019-03-24/MapLimitation.java[MapLimitation.java]
 `Map#entrySet()`を使ったforEachループを途中で止める方法。
