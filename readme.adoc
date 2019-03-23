@@ -1,2 +1,8 @@
 = Today I Learn
 今日学んだこと
+
+:toc:
+
+== 2019-03-24
+=== link:MapLimitation.java[MapLimitation.java]
+`Map#entrySet()`を使ったforEachループを途中で止める方法。
