@@ -1,0 +1,18 @@
+= roomの使い方
+最初に依存関係を追加する。
+追加するのは次の3つ。
+
+``` gradle
+implementation "androidx.room:room-runtime:2.1.0"
+annotationProcessor "androidx.room:room-compiler:2.1.0"
+kapt "android.arch.persistence.room:compiler:1.1.1"
+```
+
+ただし`kapt`を使う際にはプラグインを適用する必要がある。
+追加方法は次の通り。
+
+``` gradle
+apply plugin: 'kotlin-kapt'
+```
+
+これはアノテーションプロセッサーになっている。Roomでの`@Entity`を始めとした様々なアノテーションを利用するために必要になる。
