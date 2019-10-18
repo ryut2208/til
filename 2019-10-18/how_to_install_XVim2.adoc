@@ -1,0 +1,36 @@
+= XVim2のインストール方法
+
+== Xcodeのインストール場所を確認する
+----
+$ xcode-select -p
+/Applications/Xcode.app/Contents/Developer
+----
+違っていたら
+----
+$ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer/
+----
+
+== XVim2をクローンする
+----
+$ git clone https://github.com/XVimProject/XVim2.git
+----
+
+== XVim2をビルドする
+----
+$ cd XVim2
+$ make
+----
+
+== 自己証明書を作成して署名する
+https://github.com/XVimProject/XVim2/blob/master/SIGNING_Xcode.md[公式のやり方]に従って事故証明書の作成と署名を行う
+
+== Xcodeを再起動する
+ポップアップが表示され、Load bundleかSkip bundleと聞かれるので**Load bundle**を選択する。
+
+== XVimが有効になっているか確認する
+XcodeのメニューでEdit>Xvimがあり、Enableになっていれば有効になっている。
+
+== 参考
+
+- https://qiita.com/KazukiTanaka/items/3b45f1304effe3f25bf3
+- https://qiita.com/ks-cap/items/91fb8578bbb930141a60
