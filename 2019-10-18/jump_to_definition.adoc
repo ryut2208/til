@@ -1,0 +1,7 @@
+= 【Xcode】cmd+クリックで定義場所へジャンプする
+
+XcodeのPreference>Navigation>**Command-click on Code**を**Jumps to Definition**に変更する。 +
+Xcode10.3で確認。
+
+== 参考
+https://qiita.com/ktysne/items/4a590c6f2ecae826df8a
