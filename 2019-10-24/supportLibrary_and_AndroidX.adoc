@@ -1,0 +1,20 @@
+= SupportLibraryを利用しているプロジェクトにFirebaseを追加する
+
+``implementation 'com.android.support:appcompat-v7:28.0.0'``を利用しているプロジェクトにFirebaseを追加し、実行したところ次のようなエラーが表示された。
+
+----
+AndroidManifest.xml:22:18-91 Error:
+	Attribute application@appComponentFactory value=(android.support.v4.app.CoreComponentFactory) from [com.android.support:support-compat:28.0.0] AndroidManifest.xml:22:18-91
+	is also present at [androidx.core:core:1.0.0] AndroidManifest.xml:22:18-86 value=(androidx.core.app.CoreComponentFactory).
+	Suggestion: add 'tools:replace="android:appComponentFactory"' to <application> element at AndroidManifest.xml:9:5-41:19 to override.
+----
+
+AndroidManifestに``tools:replace="android:appComponentFactory"``を追加してもエラーは解決せず、
+すべてのproductFlavorsとflavorDimensionsにgoogle-services.jsonを配置する必要があるかと思われた。 +
+エラー文から調べたところ、SupportLibraryとAndroidXが共存しているため発生しているエラーだということが判明した。 +
+そのため、「Refactor/Migrate to AndroidX...」を利用してAndroidXに移行したところ問題なく動作するようになった。
+
+Google純正のライブラリすら普通に使えなくなっているため、特別な理由が無ければさっさとAndroidXに移行した方が良いと感じた。
+
+== 参考
+https://kurutabrog.hatenablog.com/entry/2019/05/04/133140
