@@ -1,0 +1,16 @@
+= cmd+Mの最小化コマンドを無効化する
+システム環境設定>キーボード>ショートカット>アプリケーション
+
+image::images/System_Preferences.png[]
+
+「+」を押して新規のショートカットを追加。
+
+- 最小化
+- しまう
+- Minimize
+
+などの最小化コマンドを上書きする。
+
+image::images/System_Preferences_2.png[]
+
+ここでは仮に「ctrl + cmd + m」にして「cmd + m」を無効化している。
