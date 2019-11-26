@@ -1,0 +1,14 @@
+= 【kotlin】スレッドの作り方
+AsyncTaskやkotlin coroutineを使うほどでもない、ただただ別スレッドになっていれば良いときの書き方
+
+[[app-listing]]
+[source,kotlin]
+----
+import kotlin.concurrent.thread
+
+func hoge() {
+    thread {
+        // do something
+    }
+}
+----

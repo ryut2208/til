@@ -1,0 +1,21 @@
+= 【kotlin】UTCの相互変換
+日付関連毎回調べている気がするので記録。
+
+APIのリクエストやレスポンスで日付を扱うときはUTC形式（2019-11-26T11:20:50+0900）をよく利用する。
+これの相互変換方法。
+
+== DateをStringに
+[[app-listing]]
+[source,kotlin]
+----
+val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
+val dateString = sdf.format(Date())
+----
+
+== StringをDateに
+[[app-listing]]
+[source,kotlin]
+----
+val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
+val date = sdf.parse("2019-11-26T11:20:50+0900")
+----
