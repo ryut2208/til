@@ -1,0 +1,108 @@
+業務上の作業でrubyのバージョンアップが必要だったので、せっかくならrbenvを使ってみようとした記録。
+Macにインストールされているrubyのバージョンを確認
+
+[source,shell]
+----
+$ ruby -v
+ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin18]
+----
+
+要求は2.4.0以上なので、今入れられる安定版の最新バージョン2.6.5をインストールすることを目標にする。
+
+== rbenvのインストール
+Homebrewを使ってインストールする。
+
+[source,shell]
+----
+$ brew install rbenv
+----
+
+インストール確認
+
+[source,shell]
+----
+$ rbenv -v
+rbenv 1.1.2
+----
+
+== rubyのインストール
+インストール可能バージョンの確認
+
+[source,shell]
+----
+$ rbenv install -l
+...
+2.6.0
+2.6.1
+2.6.2
+2.6.3
+2.6.4
+2.6.5
+2.7.0-dev
+2.7.0-preview1
+2.7.0-preview2
+2.7.0-preview3
+...
+----
+
+目的の2.6.5があるのでこれをインストールする。
+
+[source,shell]
+----
+$ rbenv install 2.6.5
+----
+
+めっちゃ時間かかる。
+インストールが終わったら次のコマンドで使用するrubyのバージョンを切り替える。
+
+[source,shell]
+----
+$ rbenv global 2.6.5
+----
+
+変更したら利用されているrubyのバージョンを確認
+
+[source,shell]
+----
+$ ruby -v
+----
+
+変更されていたらOK。
+
+もし変更されていなければ引き続き作業。
+使用されているrubyのパスを確認
+
+[source,shell]
+----
+$ which ruby
+/usr/bin/ruby
+----
+
+上記のパスが返ってきた場合はパスの設定が出来ていないのでパスを設定する。
+
+[source,shell]
+----
+$ rbenv init
+----
+
+を実行して結果を参考に.bash_profileを編集する。
+この記事執筆時は以下のようなレスポンスがあった。
+
+[source,shell]
+----
+# Load rbenv automatically by appending
+# the following to ~/.bash_profile:
+
+eval "$(rbenv init -)"
+----
+
+なので.bash_profileに``eval "$(rbenv init -)"``を追加。
+するとパスと利用バージョンが正常に変更された。
+
+[source,shell]
+----
+$ which ruby
+/Users/$USER/.rbenv/shims/ruby
+$ ruby -v
+ruby 2.6.5p114 (2019-10-01 revision 67812) [x86_64-darwin18]
+----
