@@ -1,0 +1,45 @@
+= MacでJDKを切り替える方法
+普段使っているJDKと違うバージョンで動作確認したいときの変更方法
+
+現在のJDKのバージョンを確認する。
+
+----
+$ java -version
+openjdk version "1.8.0_202-release"
+OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+OpenJDK 64-Bit Server VM (build 25.202-b49-5587405, mixed mode)
+----
+
+この場合JDK8(java version "1.8.0")がインストールされている。
+ここからインストール済みのJDK13に切り替えるとする。
+
+Xcode Toolsに含まれている``java_home``というコマンドラインツールを利用してJDKのインストール先を確認する。
+JDKがインストールされている場合
+
+----
+$ /usr/libexec/java_home -v 13
+/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home
+----
+
+JDKがインストールされていない場合
+
+----
+$ /usr/libexec/java_home -v 14
+Unable to find any JVMs matching version "14".
+----
+
+インストールされていれば``JAVA_HOME``を変更できる。
+
+~/.bash_profileに
+
+----
+export JAVA_HOME=`/usr/libexec/java_home -v 13`
+----
+
+を追記する。
+元あった``JAVA_HOME``はコメントアウトなりバージョン管理で記録しておく。
+元の環境に戻すときに利用する。
+変更前から``java_home``を利用していたのであればバージョンを覚えておけば良いので、コメントアウトで残す必要はないはず。
+
+== 参考
+link:https://qiita.com/seri_k/items/e978c1339ce51f13e297[MacでのJAVA_HOME設定]
