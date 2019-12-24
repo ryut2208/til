@@ -1,0 +1,15 @@
+:source-highlighter: coderay
+= Retrofit2で生データを確認する
+
+RetrofitのAPI interfaceで戻り値の型を``ResponseBody``にする。
+その後``Call``のレスポンスに対して、
+
+[source,kotlin]
+----
+response.body()?.let {
+    val str = it.string()
+    Log.d(TAG, str)
+}
+----
+
+のように処理すれば生データを取得できる。
