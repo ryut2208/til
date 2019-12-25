@@ -18,10 +18,15 @@ abstract class HogeDatabase : RoomDatabase() {
 ----
 val migration1To2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("ALTER TABLE hoge ADD fuga TEXT")
+        database.execSQL("ALTER TABLE hoge ADD fuga TEXT NOT NULL default '' ;")
+        database.execSQL("update hoge set name = 'Hoge';")
     }
 }
 ----
+
+Kotlinに合わせて``NOT NULL``制約を付けたい場合はカラム追加時にデフォルト値を設定する必要がある。
+デフォルト値を設定せずに``NOT NULL``にしていると要素をEntityに変換する際にクラッシュしてしまう。
+Entityがオプショナル型であれば``NOT NULL``制約と``update``は不要。
 
 == 作成したマイグレーションを利用する
 
@@ -33,13 +38,3 @@ val instance = Room.databaseBuilder(context, HogeDatabase::class.java, "database
 ----
 
 これで実行すればDBのバージョンアップが行われる。
-
-== 注意
-新しく追加するカラムをEntityに追加する際には**オプショナル型**にすること。
-旧バージョンで追加されたデータには新しく追加するカラムの情報は無いため
-``NULL``が入り``NOT NULL``制約を満たさずエラーが発生する。
-当たり前のことだが、ここに気づけず時間を使ってしまった。
-
-``database.execSQL()``を実行するタイミングで既存データに対して追加するカラムの情報を追加すればこの問題は回避できるはず。
-代わりに、既存データ量が多い場合は追加に時間がかかってしまうはず。
-そこを許容できればKotlin的にはそっちの方が遙かに良い。
