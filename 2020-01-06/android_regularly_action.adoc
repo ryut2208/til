@@ -1,0 +1,18 @@
+= 【Android】定期的に処理を実行する方法
+定期的に処理を実行したい場合、``Handler``と``Runnable``を利用する。
+
+[source,kotlin]
+----
+val handler = Handler()
+val runnable = Runnable {
+    // do someting
+
+    // 10秒後に再実行する
+    handler.postDelayed(runnable, 10 * 1000)
+}
+----
+
+このように``Handler``と``Runnable``を用意して、
+定期実行を開始したいタイミングで``handler.post(runnable)``を実行する。
+定期実行を終了する場合は、``handler.removeCallbacks(runnable)``を実行する。
+アプリが生きている間は常時実行されてしまうので、``onStop()``や``onDestroy()``で``removeCallbacks``の実行を忘れないように。
