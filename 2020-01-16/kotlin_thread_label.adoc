@@ -1,0 +1,43 @@
+= kotlinのthreadでラベルを付ける
+kotlinではfor文などにラベルを付けて明示的に特定の処理から抜けることができる。
+``thread``でも同じようにラベル付けして抜けられるようだが、記述が分からなかったので記録。
+
+== ラベルなしの二重thread
+ラベルなしの二重threadで``return@thread``で抜けようとすると
+----
+There is more than one label with such a name in this scope
+----
+という警告が表示される。
+
+[source,kotlin]
+----
+fun threadFunction() {
+    thread {
+        // do something
+        thread {
+            // do something
+            return@thread // There is more than one label with such a name in this scope
+        }
+    }
+}
+----
+
+== ラベル付きの二重thread
+警告を消すためには``thread``にラベルをつけて抜ける``thread``を明らかにする必要がある。
+
+[source,kotlin]
+----
+fun threadFunction() {
+    thread thread1@{
+        // do something
+        thread thread2@{
+            // do something
+            return@thread2
+        }
+    }
+}
+----
+
+このように``thread $label@``と書くと``thread``にラベルをつけることができる。
+つけたラベル名を使って``return@$name``とすると特定の処理を抜ける。
+サンプルで``return@thread2``としている部分を``return@thread1``とすると両方の``thread``の処理から抜けることができる。
