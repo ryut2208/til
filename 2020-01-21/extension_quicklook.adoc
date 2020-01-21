@@ -1,0 +1,65 @@
+= Finderのクイックルックを拡張してプレビューできるファイルを増やす
+
+MacのFinderで割とよく使う``.json``やドットファイルがただのテキストファイルなのにプレビューできず不便なので、
+プレビューできる方法を探した。
+調査の結果、Homebrew Caskでパッケージをインストールすると実現できることがわかった。
+
+== Homebrew caskのインストール
+Homebrewをインストールした状態で
+
+[source,sh]
+----
+$ brew cask
+----
+
+を実行する。
+
+[source,sh]
+----
+Homebrew Cask provides a friendly CLI workflow for the administration
+of macOS applications distributed as binaries.
+
+Commands:
+
+    --cache    display the file used to cache the Cask
+    audit      verifies installability of Casks
+    cat        dump raw source of the given Cask to the standard output
+    create     creates the given Cask and opens it in an editor
+    doctor     checks for configuration issues
+    edit       edits the given Cask
+    fetch      downloads remote application files to local cache
+    home       opens the homepage of the given Cask
+    info       displays information about the given Cask
+    install    installs the given Cask
+    list       with no args, lists installed Casks; given installed Casks, lists staged files
+    outdated   list the outdated installed Casks
+    reinstall  reinstalls the given Cask
+    style      checks Cask style using RuboCop
+    uninstall  uninstalls the given Cask
+    upgrade    upgrades all outdated casks
+    zap        zaps all files associated with the given Cask
+
+See also "man brew-cask"
+----
+
+と表示されれば利用できる。
+もし、インストールされていなかったらインストールの処理が勝手に走るはず。
+
+== クイックルックの拡張機能を入れる
+Homebrewでのインストールと同様に
+
+[source,sh]
+----
+$ brew cask install $plugin_name$
+----
+
+を実行すればインストールされる。
+
+以下、今日時点でインストールしたプラグイン
+
+quicklook-json:: JSONファイルのプレビュー +
+整形されるのは嬉しいがプレビューカラムですべての中身を見れないのが玉に瑕
+qlstephen:: 拡張子のないドットファイルのプレビュー +
+テキストファイル同様に表示されるので非常に使いやすい
+qlimagesize:: プレビューに画像サイズを表示する +
+環境が悪いのか対応していないのか表示されない
