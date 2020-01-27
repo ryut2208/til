@@ -1,0 +1,28 @@
+= WeakReferenceの使い方
+頻繁には使わないので毎回ググらないでいいように記録。
+
+== java版
+[source,java]
+----
+// 生成
+WeakReference weakReference = new WeakReference<Hoge>(hoge);
+// 生成略記
+WeakReference weakReference = new WeakReference<>(hoge);
+// だめな生成
+WeakReference weakReference = new WeakReference(hoge); // Unchecked call to ...
+// 取得
+Hoge hoge = (Hoge) weakReference.get();
+----
+
+== kotlin版
+[source,kotlin]
+----
+// 生成
+val weakReference = WeakReference<Hoge>(hoge)
+// 生成（型推論）
+val weakReference = WeakReference(hoge)
+// 取得
+val hoge:Hoge? = weakReference.get()
+// 取得（エルビス）
+val hoge:Hoge = weakReference.get() ?: return
+----
