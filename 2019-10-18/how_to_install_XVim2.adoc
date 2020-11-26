@@ -22,7 +22,7 @@ $ make
 ----
 
 == 自己証明書を作成して署名する
-https://github.com/XVimProject/XVim2/blob/master/SIGNING_Xcode.md[公式のやり方]に従って事故証明書の作成と署名を行う
+https://github.com/XVimProject/XVim2/blob/master/SIGNING_Xcode.md[公式のやり方]に従って自己証明書の作成と署名を行う
 
 == Xcodeを再起動する
 ポップアップが表示され、Load bundleかSkip bundleと聞かれるので**Load bundle**を選択する。
