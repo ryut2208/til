@@ -1,0 +1,29 @@
+= AndroidStudioが複数ある場合のCommand-line launcher設定
+
+== Command-line Launcherの作成
+
+> Tools > Create Command-line Launcher
+
+で作成する。
+
+== AndroidStudioの指定
+標準では
+
+> /usr/local/bin/studio
+
+にコマンドが作成される。
+これをテキストエディタで開いて12行目の``RUN_PATH``を変更する。
+
+----
+# 変更前
+RUN_PATH = u'/Applications/Android Studio.app'
+# 変更後
+RUN_PATH = u'/Applications/Android Studio_4.1.1.app'
+----
+
+studioコマンドで利用したいバージョンのAndroidStudioに変更すれば以降はそのバージョンが利用される。
+
+== 思ったこと
+全部のバージョンでアプリ名を変更してたら新しいバージョンが出る度にパスを変更しなければならない。
+忘れたら開かないor違うバージョンで開かれる問題が発生することが目に見えているから面倒。
+最新バージョンを「Android Studio.app」にしておいて、過去バージョンを「Android Studio._x.x.x.app」にするのが管理上楽だと思った。
