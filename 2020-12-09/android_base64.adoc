@@ -1,0 +1,38 @@
+# Android.util.Base64の使い方
+
+## 基本形
+
+[source, kotlin]
+----
+val original = "1234567890"
+val encodedString = Base64.encodeToString(original, Base64.DEFAULT)
+// MTIzNDU2Nzg5MA==
+----
+
+## フラグ指定
+https://developer.android.com/reference/android/util/Base64?hl=ja[リファレンス]を参考にする。
+使いそうなのは以下の二つ。
+
+URL Safe:: ``Base64.URL_SAFE``
+末尾の==を削除:: ``Base64.NO_PADDING``
+
+### 単一指定
+フラグを一つだけ使う場合は``flags``にそのまま定数を入れる。
+
+[source, kotlin]
+----
+val original = "1234567890"
+val encodedString = Base64.encodeToString(original, Base64.NO_PADDING)
+// MTIzNDU2Nzg5MA
+----
+
+### 複数指定
+URLの予約語である記号（``[_-+/=]``）を置換・除外したい場合はURL SafeとNo Paddingを両方有効にする。
+各定数はビットフラグで定義されているため、有効にしたいフラグを加算すればそれぞれが有効になる。
+
+[source, kotlin]
+----
+val original = "1234567890"
+val encodedString = Base64.encodeToString(original, Base64.NO_PADDING + Base64.URL_SAFE)
+// MTIzNDU2Nzg5MA
+----
