@@ -1,0 +1,26 @@
+= ZXing
+ZXing 3.6.6をObjective-Cでどうしても使い必要がある場合の暫定対処方法。
+対応項目は次の2つ。
+
+- ``AVCaptureDevice:devicesWithMediaType``のdeprecated
+- ``sizeof()``のキャスト
+
+== ``AVCaptureDevice:devicesWithMediaType``のdeprecated
+``AVCaptureDeviceDiscoverySession``を使った形に書き換える。
+
+[source, diff]
+----
+-  NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
++    AVCaptureDeviceDiscoverySession *session = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInDuoCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionFront];
++    NSArray *devices = [session devices];
+----
+
+/Users/ryuta.tanaka/Documents/work/Applican/v2/baseapp-ios-shufoo/zxingify-objc/ZXingObjC/client/ZXCapture.m:214:113: 'AVCaptureDeviceTypeBuiltInDuoCamera' is deprecated: first deprecated in iOS 10.2 - Use AVCaptureDeviceTypeBuiltInDualCamera instead.
+
+
+== ``sizeof()``のキャスト
+
+[source, objective-c]
+----
+else if (cValue < (unsigned short)sizeof(C40_BASIC_SET_CHARS) / sizeof(char)) {
+----

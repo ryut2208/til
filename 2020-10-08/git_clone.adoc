@@ -1,0 +1,10 @@
+= git coloneのオプション
+
+[source, shell]
+----
+$ git clone --depth 1 --branch feature/repro_rich_push http://example.com
+----
+
+``--depth 1``:: 遡るコミット履歴。この場合HEADだけを取得してくる。
+``--branch hoge``:: 取得するブランチを指定する
+`` url foo``:: クローンしてきたリポジトリのディレクトリ名を変更する

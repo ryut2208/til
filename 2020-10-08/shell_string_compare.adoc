@@ -1,0 +1,11 @@
+= Shell(bash)での文字列比較の方法
+XcodeのRun Scriptでの話。
+
+
+https://qiita.com/shu223/items/b017d574fda777735a3d
+
+----
+$ env | sort > env.txt
+----
+
+https://shellscript.sunone.me/if_and_test.html
