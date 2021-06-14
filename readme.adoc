@@ -13,3 +13,10 @@ Asciidocの書き方。インラインでのコード表示とリンクの張り
 link:2019-03-24/switch_drop_shadow.adoc[switch_drop_shadow.adoc]::
 Windows10のウィンドウのドロップシャドウの切り替え。+
 画像は気が向いたら。
+
+== 2020-01-06
+link:2020-01-06/android_regularly_action.adoc[2020-01-06/android_regularly_action]
+Androidでの定期的な処理の実行方法
+
+link:2020-01-06/room_increment_primary_key.adoc[2020-01-06/room_increment_primary_key]
+Roomを利用して自動インクリメントかつ削除済みidを再利用する方法
